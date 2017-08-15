@@ -32,9 +32,7 @@ public class OrderformsApplication {
 	@Bean
 	public CommandLineRunner run(ProductService productService, FormService formService) throws Exception {
 		return args -> {
-			
 			List<List<Product>> products = productService.findAllSortByName();
-			logger.info(String.format("Received %d products%n",products.stream().mapToInt(List::size).sum()));
 			formService.generateOrderForm(products);
 		};
 	}

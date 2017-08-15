@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -29,6 +31,8 @@ public class ProductServiceImpl implements ProductService {
 	private String productsAllUrl;
 
 	private RestTemplate restTemplate;
+	
+	private Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
 	@Autowired
 	public ProductServiceImpl(RestTemplate restTemplate) {
@@ -48,6 +52,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<List<Product>> findAllSortByName() {
 		List<Product> products = find(productsAllUrl);
+		logger.info(String.format("Received %d products%n",products.size()));
 		List<Product> backorderProducts = sortInterleavedByName(
 				products.stream().filter(p -> p.isBackorder()).collect(Collectors.toList()));
 		List<Product> onhandProducts = sortInterleavedByName(
