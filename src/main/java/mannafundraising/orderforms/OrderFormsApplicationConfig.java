@@ -8,8 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 import freemarker.template.TemplateExceptionHandler;
 
 @Configuration
-@PropertySource("classpath:application.properties")
-@ComponentScan
+@PropertySource("classpath:application-${target_env}.properties")
+@ComponentScan("mannafundraising.orderforms")
 public class OrderFormsApplicationConfig {
 
 	@Bean
@@ -23,6 +23,7 @@ public class OrderFormsApplicationConfig {
 		return config;
 	}
 	
-	public static final String PROFILE_LOCAL = "local";
-	public static final String PROFILE_REMOTE = "remote";
+	public static final String PROFILE_DEV = "dev";
+	public static final String PROFILE_STAGING = "staging";
+	public static final String PROFILE_PRODUCTION = "production";
 }

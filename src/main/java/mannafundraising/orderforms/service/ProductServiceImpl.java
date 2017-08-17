@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<List<Product>> findAllSortByName() {
 		List<Product> products = find(productsAllUrl);
-		logger.info(String.format("Received %d products%n",products.size()));
+		logger.info(String.format("Received %d products",products.size()));
 		List<Product> backorderProducts = sortInterleavedByName(
 				products.stream().filter(p -> p.isBackorder()).collect(Collectors.toList()));
 		List<Product> onhandProducts = sortInterleavedByName(

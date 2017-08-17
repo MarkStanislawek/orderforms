@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-@ActiveProfiles(OrderFormsApplicationConfig.PROFILE_LOCAL)
+@ActiveProfiles(OrderFormsApplicationConfig.PROFILE_DEV)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader=AnnotationConfigContextLoader.class, classes={OrderFormsApplicationConfig.class})
 public class IntegrationTests {
@@ -18,8 +18,8 @@ public class IntegrationTests {
 
 	@Test
 	public void testHandleRequest() {
-		String result = app.handleRequest("test", null);
-		Assert.assertTrue(result != null && result.contains("success"));
+		boolean success = app.processRequest();
+		Assert.assertTrue(success);
 	}
 
 }

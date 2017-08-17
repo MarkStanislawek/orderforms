@@ -34,7 +34,7 @@ public class FreemarkerFormService implements FormService {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		Writer writer = new OutputStreamWriter(stream);
 		temp.process(root, writer);
-		writer.flush();
+		writer.close();
 		return stream.toByteArray();
 	}
 
