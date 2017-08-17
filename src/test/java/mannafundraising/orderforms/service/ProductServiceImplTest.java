@@ -3,6 +3,7 @@ package mannafundraising.orderforms.service;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import mannafundraising.orderforms.entity.Product;
@@ -25,12 +26,12 @@ public class ProductServiceImplTest {
 		z.setName("z");
 		
 		List<Product> sorted = ProductServiceImpl.sortInterleavedByName(Arrays.asList(a,b,c,x,y,z));
-		assert(sorted.get(0).getName().equals(a.getName()));
-		assert(sorted.get(1).getName().equals(x.getName()));
-		assert(sorted.get(2).getName().equals(b.getName()));
-		assert(sorted.get(3).getName().equals(y.getName()));
-		assert(sorted.get(4).getName().equals(c.getName()));
-		assert(sorted.get(5).getName().equals(z.getName()));
+		Assert.assertTrue(sorted.get(0).getName().equals(a.getName()));
+		Assert.assertTrue(sorted.get(1).getName().equals(x.getName()));
+		Assert.assertTrue(sorted.get(2).getName().equals(b.getName()));
+		Assert.assertTrue(sorted.get(3).getName().equals(y.getName()));
+		Assert.assertTrue(sorted.get(4).getName().equals(c.getName()));
+		Assert.assertTrue(sorted.get(5).getName().equals(z.getName()));
 	}
 
 }
