@@ -4,7 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -20,22 +22,33 @@ import freemarker.template.TemplateNotFoundException;
 import mannafundraising.orderforms.entity.Product;
 
 @Component
-public class FreemarkerFormService implements FormService {
-	
+public class FreemarkerFormService implements HtmlFormService {
+
 	@Autowired
 	private Configuration cfg;
-		
+
 	@Override
-	public byte[] generateOrderForm(List<List<Product>> products) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
-		Map<String,Object> root = new HashMap<>();
-		root.put("onhandProducts", products.get(0));
-		root.put("backorderProducts", products.get(1));
-		Template temp = cfg.getTemplate("MannaOrderForm.ftl");
+	public List<byte[]> generateOrderForm(List<List<Product>> products) throws TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException, TemplateException {
+		List<byte[]> pages = new ArrayList<>();
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		Map<String, Object> root = new HashMap<>();
+		
+		if (products != null && products.size() >= 2) {
+			Iterator<List<Product>> iter = products.iterator();
+			root.put("onhandProducts", iter.next());
+			root.put("backorderProducts", iter.next());
+		}
+		Template temp = cfg.getTemplate("MannaOrderForm-p1.ftl");
 		Writer writer = new OutputStreamWriter(stream);
 		temp.process(root, writer);
-		writer.close();
-		return stream.toByteArray();
+		pages.add(stream.toByteArray());
+		stream.reset();
+		temp = cfg.getTemplate("MannaOrderForm-p2.ftl");
+		writer = new OutputStreamWriter(stream);
+		temp.process(root, writer);
+		pages.add(stream.toByteArray());
+		return pages;
 	}
 
 }

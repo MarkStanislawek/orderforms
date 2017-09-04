@@ -4,6 +4,6 @@ import java.util.List;
 
 import mannafundraising.orderforms.entity.Product;
 
-public interface FormService {
-	byte[] generateOrderForm(List<List<Product>> products) throws Exception;
+public interface HtmlFormService {
+	List<byte[]> generateOrderForm(List<List<Product>> products) throws Exception;
 }

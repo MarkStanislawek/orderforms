@@ -8,15 +8,18 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import mannafundraising.orderforms.OrderFormsApplicationConfig;
 import mannafundraising.orderforms.entity.Product;
 
 @Component
+@Profile({ OrderFormsApplicationConfig.PROFILE_STAGING, OrderFormsApplicationConfig.PROFILE_PRODUCTION })
 public class ProductServiceImpl implements ProductService {
 
 	@Value("${products.onhand.url}")
@@ -27,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Value("${products.all.url}")
 	private String productsAllUrl;
-	
+
 	private Logger logger = Logger.getLogger(ProductServiceImpl.class.getName());
 
 	@Override
@@ -43,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<List<Product>> findAllSortByName() {
 		List<Product> products = find(productsAllUrl);
-		logger.info(String.format("Received %d products",products.size()));
+		logger.info(String.format("Received %d products", products.size()));
 		List<Product> backorderProducts = sortInterleavedByName(
 				products.stream().filter(p -> p.isBackorder()).collect(Collectors.toList()));
 		List<Product> onhandProducts = sortInterleavedByName(
