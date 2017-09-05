@@ -53,7 +53,6 @@ public class ITextPdfService implements PdfService {
 		for (Iterator<byte[]> i = images.iterator(); i.hasNext();) {
 			Image image = Image.getInstance(i.next());
 			image.scaleAbsolute(letterRectangleWithMargins);
-			 image.setAbsolutePosition(0, 0);
 			document.add(image);
 			if (i.hasNext())
 				document.newPage();
