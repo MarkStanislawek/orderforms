@@ -28,7 +28,7 @@ public class NoOpProductService implements ProductService {
 	}
 
 	@Override
-	public List<List<Product>> findAllSortByName() {
+	public List<List<Product>> findAllSortedByName() {
 		return secondEmptyList;
 	}
 

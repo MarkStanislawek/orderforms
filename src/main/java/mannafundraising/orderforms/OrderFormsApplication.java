@@ -25,7 +25,7 @@ public class OrderFormsApplication {
 
 	public boolean processRequest() {
 		try {
-			List<List<Product>> products = productService.findAllSortByName();
+			List<List<Product>> products = productService.findAllSortedByName();
 			List<byte[]> htmlPages = htmlFormService.generateOrderForm(products);
 			List<byte[]> images = imageService.createImageFromHtml(htmlPages);
 			storeService.storeImages(images);

@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<List<Product>> findAllSortByName() {
+	public List<List<Product>> findAllSortedByName() {
 		List<Product> products = find(productsAllUrl);
 		logger.info(String.format("Received %d products", products.size()));
 		List<Product> backorderProducts = sortInterleavedByName(

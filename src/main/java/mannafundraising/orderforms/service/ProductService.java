@@ -9,5 +9,5 @@ public interface ProductService {
 	
 	List<Product> findBackorder();
 	
-	List<List<Product>> findAllSortByName();
+	List<List<Product>> findAllSortedByName();
 }
