@@ -6,26 +6,26 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import mannafundraising.orderforms.entity.Product;
+import mannafundraising.orderforms.domain.ProductJson;
 
-public class ProductServiceImplTest {
+public class RestProductServiceTest {
 
 	@Test
 	public void testSortInterleavedByName() {
-		Product a = new Product();
+		ProductJson a = new ProductJson();
 		a.setName("a");
-		Product b = new Product();
+		ProductJson b = new ProductJson();
 		b.setName("b");
-		Product c = new Product();
+		ProductJson c = new ProductJson();
 		c.setName("c");
-		Product x = new Product();
+		ProductJson x = new ProductJson();
 		x.setName("x");
-		Product y = new Product();
+		ProductJson y = new ProductJson();
 		y.setName("y");
-		Product z = new Product();
+		ProductJson z = new ProductJson();
 		z.setName("z");
 		
-		List<Product> sorted = ProductServiceImpl.sortInterleavedByName(Arrays.asList(a,b,c,x,y,z));
+		List<ProductJson> sorted = RestProductService.sortInterleavedByName(Arrays.asList(a,b,c,x,y,z));
 		Assert.assertTrue(sorted.get(0).getName().equals(a.getName()));
 		Assert.assertTrue(sorted.get(1).getName().equals(x.getName()));
 		Assert.assertTrue(sorted.get(2).getName().equals(b.getName()));

@@ -7,28 +7,28 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import mannafundraising.orderforms.OrderFormsApplicationConfig;
-import mannafundraising.orderforms.entity.Product;
+import mannafundraising.orderforms.domain.ProductJson;
 import mannafundraising.orderforms.service.ProductService;
 
-@Profile(OrderFormsApplicationConfig.PROFILE_DEV)
-@Component
+//@Profile(OrderFormsApplicationConfig.PROFILE_DEV)
+//@Component
 public class NoOpProductService implements ProductService {
 
-	private static final List<Product> emptyList = Collections.unmodifiableList(Collections.emptyList());
-	private static final List<List<Product>> secondEmptyList = Collections.unmodifiableList(Collections.emptyList());
+	private static final List<ProductJson> emptyList = Collections.unmodifiableList(Collections.emptyList());
+	private static final List<List<ProductJson>> secondEmptyList = Collections.unmodifiableList(Collections.emptyList());
 
 	@Override
-	public List<Product> findOnhand() {
+	public List<ProductJson> findOnhand() {
 		return emptyList;
 	}
 
 	@Override
-	public List<Product> findBackorder() {
+	public List<ProductJson> findBackorder() {
 		return emptyList;
 	}
 
 	@Override
-	public List<List<Product>> findAllSortedByName() {
+	public List<List<ProductJson>> findAllSortedByName() {
 		return secondEmptyList;
 	}
 

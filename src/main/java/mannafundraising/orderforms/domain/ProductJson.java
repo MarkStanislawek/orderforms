@@ -1,16 +1,13 @@
-package mannafundraising.orderforms.entity;
+package mannafundraising.orderforms.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class Product {
+public final class ProductJson {
 	private String name;
 	private String tuitionCreditPercentage;
 	private String faceValue;
 	private boolean backorder;
-
-	public Product() {
-	}
 
 	public String getName() {
 		return name;
@@ -43,11 +40,4 @@ public final class Product {
 	public void setBackorder(boolean backorder) {
 		this.backorder = backorder;
 	}
-
-	@Override
-	public String toString() {
-		return String.format("Product [name=%s, tuitionCreditPercentage=%s, faceValue=%s, backorder=%b]", name,
-				tuitionCreditPercentage, faceValue, backorder);
-	}
-
 }

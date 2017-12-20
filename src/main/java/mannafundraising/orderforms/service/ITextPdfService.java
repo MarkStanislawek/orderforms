@@ -20,10 +20,14 @@ import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 @Component
 public class ITextPdfService implements PdfService {
+	private static final float MARGIN_LEFT = 10f;
+	private static final float MARGIN_RIGHT = 10f;
+	private static final float MARGIN_TOP = 10f;
+	private static final float MARGIN_BOTTOM = 10f;
 
 	@Override
 	public byte[] createPdfFromHtml(List<byte[]> pages) throws DocumentException, IOException {
-		Document document = new Document(PageSize.LETTER, 2.5f, 2.5f, 2.5f, 2.5f);
+		Document document = new Document(PageSize.LETTER, MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM);
 		document.addAuthor(this.getClass().getCanonicalName());
 		document.addCreationDate();
 		document.addSubject("Manna Order Form");
@@ -41,9 +45,9 @@ public class ITextPdfService implements PdfService {
 
 	@Override
 	public byte[] createPdfFromImage(List<byte[]> images) throws Exception {
-		Document document = new Document(PageSize.LETTER, 2.5f, 2.5f, 2.5f, 2.5f);
-		Rectangle letterRectangleWithMargins = new Rectangle(PageSize.LETTER.getLeft(2.5f), PageSize.LETTER.getBottom(2.5f),
-				PageSize.LETTER.getRight(2.5f), PageSize.LETTER.getTop(2.5f));
+		Document document = new Document(PageSize.LETTER, MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM);
+		Rectangle letterRectangleWithMargins = new Rectangle(PageSize.LETTER.getLeft(MARGIN_LEFT),
+				PageSize.LETTER.getBottom(MARGIN_BOTTOM), PageSize.LETTER.getRight(MARGIN_RIGHT), PageSize.LETTER.getTop(MARGIN_TOP));
 		document.addAuthor(this.getClass().getCanonicalName());
 		document.addCreationDate();
 		document.addSubject("Manna Order Form");

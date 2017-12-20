@@ -19,7 +19,8 @@ import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
-import mannafundraising.orderforms.entity.Product;
+import mannafundraising.orderforms.domain.ProductJson;
+import mannafundraising.orderforms.domain.SaleDateJson;
 
 @Component
 public class FreemarkerFormService implements HtmlFormService {
@@ -28,27 +29,45 @@ public class FreemarkerFormService implements HtmlFormService {
 	private Configuration cfg;
 
 	@Override
-	public List<byte[]> generateOrderForm(List<List<Product>> products) throws TemplateNotFoundException,
+	public List<byte[]> generateOrderForm(List<List<ProductJson>> productJsons, List<SaleDateJson> saleDates)
+			throws IOException, TemplateException {
+		Map<String, Object> dataModel = createProductDataModel(productJsons);
+		dataModel.putAll(createSaleDateDataModel(saleDates));
+		return createPages(dataModel);
+	}
+
+	private List<byte[]> createPages(Map<String, Object> dataModel) throws TemplateNotFoundException,
 			MalformedTemplateNameException, ParseException, IOException, TemplateException {
 		List<byte[]> pages = new ArrayList<>();
-		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		Map<String, Object> root = new HashMap<>();
-		
-		if (products != null && products.size() >= 2) {
-			Iterator<List<Product>> iter = products.iterator();
-			root.put("onhandProducts", iter.next());
-			root.put("backorderProducts", iter.next());
-		}
-		Template temp = cfg.getTemplate("MannaOrderForm-p1.ftl");
-		Writer writer = new OutputStreamWriter(stream);
-		temp.process(root, writer);
-		pages.add(stream.toByteArray());
-		stream.reset();
-		temp = cfg.getTemplate("MannaOrderForm-p2.ftl");
-		writer = new OutputStreamWriter(stream);
-		temp.process(root, writer);
-		pages.add(stream.toByteArray());
+		pages.add(createPage("MannaOrderForm-p1.ftl", dataModel));
+		pages.add(createPage("MannaOrderForm-p2.ftl", dataModel));
 		return pages;
+	}
+
+	private byte[] createPage(String templateName, Map<String, Object> dataModel) throws TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException, TemplateException {
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		Template temp = cfg.getTemplate(templateName);
+		Writer writer = new OutputStreamWriter(stream);
+		temp.process(dataModel, writer);
+		return stream.toByteArray();
+	}
+
+	private Map<String, Object> createProductDataModel(List<List<ProductJson>> productJsons) {
+		Map<String, Object> model = new HashMap<>();
+		if (productJsons != null && productJsons.size() >= 2) {
+			Iterator<List<ProductJson>> iter = productJsons.iterator();
+			model.put("onhandProducts", iter.next());
+			model.put("backorderProducts", iter.next());
+		}
+		return model;
+	}
+
+	private Map<String, Object> createSaleDateDataModel(List<SaleDateJson> saleDates) {
+		Map<String, Object> model = new HashMap<>();
+		if (saleDates != null)
+			model.put("saleDates", saleDates);
+		return model;
 	}
 
 }

@@ -6,7 +6,8 @@
 <title>Manna Order Form - Back Order - revised ${lastUpdate?date}</title>
 <style type="text/css">
 body {
-	font-family: "Times New Roman", Serif;
+	font-family: helvetica, arial, sans-serif;
+	text-rendering: optimizeLegibility;
 	margin: 0 auto;
 }
 
@@ -23,10 +24,6 @@ th, td {
 
 th {
 	text-align: center;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2
 }
 
 p { 
@@ -65,27 +62,27 @@ p {
 <body>
 	<table>
 	<tr>
-			<td colspan="10" class="x-large-center">Backorder Vendors</td>
+			<td colspan="10" class="x-large-center">BACKORDER VENDORS</td>
 	</tr>
-	<tr>
+	<tr style="background-color: #d9d9d9">
 			<th width="20%">BACKORDER VENDORS</th>
 			<th width="7.5%">%</th>
-			<th width="7.5%">Card<br />Value
+			<th width="7.5%">CARD<br />VALUE
 			</th>
-			<th width="7.5%">Total $<br />Amt.</th>
-			<th width="7.5%">Tuition<br />Credit
+			<th width="7.5%">TOTAL $<br />AMT.</th>
+			<th width="7.5%">TUITION<br />CREDIT
 			</th>
 			<th width="20%">BACKORDER VENDORS</th>
 			<th width="7.5%">%</th>
-			<th width="7.5%">Card<br />Value
+			<th width="7.5%">CARD<br />VALUE
 			</th>
-			<th width="7.5%">Total $<br />Amt.</th>
-			<th width="7.5%">Tuition<br />Credit
+			<th width="7.5%">TOTAL $<br />AMT.</th>
+			<th width="7.5%">TUITION<br />CREDIT
 			</th>
 		</tr>
 		<#if backorderProducts?has_content>
 			<#list backorderProducts as backorderProduct> 
-				${backorderProduct?item_cycle('<tr>','')}
+				${backorderProduct?item_cycle('<tr>','','<tr style="background-color: #d9d9d9">','')}
 				<td>${backorderProduct.name}</td>
 				<td class="center">${backorderProduct.tuitionCreditPercentage}</td>
 				<td class="center">${backorderProduct.faceValue}</td>
@@ -100,45 +97,37 @@ p {
 			</#list>
 		</#if>
 		<tr>
-			<td class="bold" colspan="10">Many more vendors are available, if you don't see what you need, PLEASE call the Development Office at 708-422-2194.</td>
+			<td class="bold" colspan="10">Many more vendors are available, if you don't see what you need, please call the Development Office at 708-422-2194.</td>
 		</tr>
-		<tr>
+		<tr style="background-color: #d9d9d9">
 			<td colspan="10">&nbsp;</td>
 		</tr>
 		<tr>
 			<td colspan="5">&nbsp;</td>
 			<td colspan="5"><b>BACKORDER TOTAL:</b><br />(Write on front side of form.)</td>
 		</tr>
-		<tr>
+		<tr style="background-color: #d9d9d9">
 			<td colspan="5">&nbsp;</td>
 			<td colspan="5"><b>TUITION REIMBURSEMENT:</b><br />(Add to total on front side.)</td>
 		</tr>
 		<tr>
-			<td class="bold-underlined" colspan="10">CASH & CARRY SALES TIMES</td>
+			<td class="bold-underlined" colspan="10">Cash & Carry Sales Times</td>
 		</tr>
-		<tr>
-			<td class="bold">Thursday</td>
-			<td class="bold" colspan="2">6:00 - 7:30pm</td>
-			<td class="bold" colspan="3">1st Floor Development Office Enter Door #10</td>
-			<td class="bold" colspan="4">&nbsp;</td>
+		<#if saleDates?has_content>
+			<#list saleDates as saleDate>
+			${saleDate?item_cycle('<tr style="background-color: #d9d9d9">','<tr>')}
+			<td class="bold">${saleDate.date!"&nbsp;"}</td>
+			<td class="bold" colspan="2">${saleDate.time!"&nbsp;"}</td>
+			<td class="bold" colspan="3">${saleDate.location!"&nbsp;"}</td>
+			<td class="bold" colspan="4">${saleDate.note!"&nbsp;"}</td>
 		</tr>
-		<tr>
-			<td class="bold">Friday</td>
-			<td class="bold" colspan="2">8:00am - 9:30am</td>
-			<td class="bold" colspan="3">1st Floor Development Office Enter Door #10</td>
-			<td class="bold" colspan="4">June 9 to Aug. 25, Friday hours are 9 to 1030 am</td>
-		</tr>
-		<tr>
-			<td class="bold">Third Sunday of the month</td>
-			<td class="bold" colspan="2">9am - noon</td>
-			<td class="bold" colspan="3">Room 119</td>
-			<td class="bold" colspan="4">&nbsp;</td>
-		</tr>
+			</#list>
+		</#if>
 		<tr>
 			<td colspan="10">&nbsp;</td>
 		</tr>
-		<tr>
-			<td class="bold" colspan="10">Our Orders are placed on Monday afternoon. Please give us your order by 10 am Monday. Thank you!!</td>
+		<tr style="background-color: #d9d9d9">
+			<td class="bold" colspan="10">Back orders and special orders must be placed by December 11th to arrive before Christmas.</td>
 		</tr>
 		<tr>
 			<td class="right-align" colspan="10">revised ${lastUpdate?date}</td>

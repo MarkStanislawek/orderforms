@@ -6,7 +6,8 @@
 <title>Manna Order Form - revised ${lastUpdate?date}</title>
 <style type="text/css">
 body {
-	font-family: "Times New Roman", Serif;
+	font-family: helvetica, arial, sans-serif;
+	text-rendering: optimizeLegibility;
 	margin: 0 auto;
 }
 
@@ -23,10 +24,6 @@ th, td {
 
 th {
 	text-align: center;
-}
-
-tr:nth-child(even) {
-	background-color: #f2f2f2
 }
 
 p { 
@@ -65,35 +62,35 @@ p {
 <body>
 	<table>
 		<tr>
-			<td colspan="10" class="x-large-center">St. Gerald Manna Order Form</td>
+			<td colspan="10" class="x-large-center">ST. GERALD MANNA ORDER FORM</td>
+		</tr>
+		<tr style="background-color: #d9d9d9">
+			<td class="bold" colspan="5">WHO RECEIVES THE CREDIT?</td>
+			<td class="bold" colspan="5">ORDER DATE:</td>
 		</tr>
 		<tr>
-			<td class="bold" colspan="5">Who receives the credit?</td>
-			<td class="bold" colspan="5">Order Date:</td>
+			<td class="large-bold" colspan="5">NAME:</td>
+			<td class="large-bold" colspan="5">PHONE NUMBER:</td>
 		</tr>
-		<tr>
-			<td class="large-bold" colspan="5">Name:</td>
-			<td class="large-bold" colspan="5">Phone Number:</td>
-		</tr>
-		<tr>
+		<tr style="background-color: #d9d9d9">
 			<th width="20%">IN STOCK VENDORS</th>
 			<th width="7.5%">%</th>
-			<th width="7.5%">Card<br />Value
+			<th width="7.5%">CARD<br />VALUE
 			</th>
-			<th width="7.5%">Total $<br />Amt.</th>
-			<th width="7.5%">Tuition<br />Credit
+			<th width="7.5%">TOTAL $<br />AMT.</th>
+			<th width="7.5%">TUITION<br />CREDIT
 			</th>
 			<th width="20%">IN STOCK VENDORS</th>
 			<th class="center" width="7.5%">%</th>
-			<th class="center" width="7.5%">Card<br />Value
+			<th class="center" width="7.5%">CARD<br />VALUE
 			</th>
-			<th width="7.5%">Total $<br />Amt.</th>
-			<th width="7.5%">Tuition<br />Credit
+			<th width="7.5%">TOTAL $<br />AMT.</th>
+			<th width="7.5%">TUITION<br />CREDIT
 			</th>
 		</tr>
 		<#if onhandProducts?has_content>
 			<#list onhandProducts as product> 
-				${product?item_cycle('<tr>','')}
+				${product?item_cycle('<tr>','','<tr style="background-color: #d9d9d9">','')}
 				<td>${product.name}</td>
 				<td class="center">${product.tuitionCreditPercentage}</td>
 				<td class="center">${product.faceValue}</td>
@@ -110,15 +107,15 @@ p {
 		<tr>
 			<td colspan="10">&nbsp;</td>
 		</tr>
-		<tr>
-			<td class="bold" colspan="5">Please fill in:</td>
+		<tr style="background-color: #d9d9d9">
+			<td class="bold" colspan="5">PLEASE FILL IN:</td>
 			<td class="bold" colspan="5">SIDE 1 TOTAL:</td>
 		</tr>
 		<tr>
 			<td class="bold" colspan="5">HOLD:</td>
 			<td class="bold" colspan="5">BACKORDER TOTAL:</td>
 		</tr>
-		<tr>
+		<tr style="background-color: #d9d9d9">
 			<td class="bold" colspan="5">SEND W/STUDENT:</td>
 			<td class="bold" colspan="5">TOTAL SALE:</td>
 		</tr>
@@ -126,24 +123,24 @@ p {
 			<td class="bold" colspan="5">ROOM #:</td>
 			<td class="bold" colspan="5">TUITION REIMBURSEMENT:</td>
 		</tr>
-		<tr>
+		<tr style="background-color: #d9d9d9">
 			<td colspan="5">&nbsp;</td>
-			<td class="bold" colspan="5">Cash Amt.:</td>
+			<td class="bold" colspan="5">CASH AMT.:</td>
 		</tr>
 		<tr>
 			<td colspan="5">&nbsp;</td>
-			<td class="bold" colspan="2">Check #:</td>
-			<td class="bold" colspan="3">Amt.:</td>
+			<td class="bold" colspan="2">CHECK #:</td>
+			<td class="bold" colspan="3">AMT.:</td>
 		</tr>
-		<tr>
+		<tr style="background-color: #d9d9d9">
 			<td colspan="5">&nbsp;</td>
-			<td class="bold" colspan="5">Name on check:</td>
+			<td class="bold" colspan="5">NAME ON CHECK:</td>
 		</tr>
 		<tr>
 			<td class="bold" colspan="5">*Kohls is the only vendor that accepts gift cards as payment on your charge.</td>
-			<td class="bold" colspan="5">Make checks payable to: St. Gerald Manna</td>
+			<td class="bold" colspan="5">Please make checks payable to: St. Gerald Manna</td>
 		</tr>
-		<tr>
+		<tr style="background-color: #d9d9d9">
 			<td colspan="10">&nbsp;</td>
 		</tr>
 		<tr>

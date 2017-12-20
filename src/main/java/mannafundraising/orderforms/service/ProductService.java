@@ -2,12 +2,12 @@ package mannafundraising.orderforms.service;
 
 import java.util.List;
 
-import mannafundraising.orderforms.entity.Product;
+import mannafundraising.orderforms.domain.ProductJson;
 
 public interface ProductService {
-	List<Product> findOnhand();
+	List<ProductJson> findOnhand();
 	
-	List<Product> findBackorder();
+	List<ProductJson> findBackorder();
 	
-	List<List<Product>> findAllSortedByName();
+	List<List<ProductJson>> findAllSortedByName();
 }

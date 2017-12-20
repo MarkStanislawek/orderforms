@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JEditorPane;
+import javax.swing.text.html.HTMLEditorKit;
 
 import org.springframework.stereotype.Component;
 
