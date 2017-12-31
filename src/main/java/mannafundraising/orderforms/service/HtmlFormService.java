@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import freemarker.template.TemplateException;
-import mannafundraising.orderforms.domain.ProductJson;
-import mannafundraising.orderforms.domain.SaleDateJson;
+import mannafundraising.common.json.ProductJson;
+import mannafundraising.common.json.SaleDateJson;
 
 public interface HtmlFormService {
 

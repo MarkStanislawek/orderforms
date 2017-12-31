@@ -19,8 +19,8 @@ import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
-import mannafundraising.orderforms.domain.ProductJson;
-import mannafundraising.orderforms.domain.SaleDateJson;
+import mannafundraising.common.json.ProductJson;
+import mannafundraising.common.json.SaleDateJson;
 
 @Component
 public class FreemarkerFormService implements HtmlFormService {

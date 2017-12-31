@@ -6,8 +6,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import mannafundraising.orderforms.domain.ProductJson;
-import mannafundraising.orderforms.domain.SaleDateJson;
 import mannafundraising.orderforms.service.HtmlFormService;
 import mannafundraising.orderforms.service.ImageService;
 import mannafundraising.orderforms.service.PdfService;

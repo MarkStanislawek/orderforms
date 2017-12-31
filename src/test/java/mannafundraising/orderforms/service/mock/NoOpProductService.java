@@ -3,11 +3,7 @@ package mannafundraising.orderforms.service.mock;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
-
-import mannafundraising.orderforms.OrderFormsApplicationConfig;
-import mannafundraising.orderforms.domain.ProductJson;
+import mannafundraising.common.json.ProductJson;
 import mannafundraising.orderforms.service.ProductService;
 
 //@Profile(OrderFormsApplicationConfig.PROFILE_DEV)

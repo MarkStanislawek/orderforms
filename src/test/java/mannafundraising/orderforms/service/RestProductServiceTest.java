@@ -4,28 +4,29 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-import mannafundraising.orderforms.domain.ProductJson;
+import mannafundraising.common.json.ProductJson;
+import mannafundraising.common.json.ProductJson.ProductJsonBuilder;
 
 public class RestProductServiceTest {
+	private ProductJson a, b, c, x, y, z;
+
+	@Before
+	public void setup() {
+		ProductJsonBuilder builder = new ProductJsonBuilder();
+		a = builder.withName("a").build();
+		b = builder.withName("b").build();
+		c = builder.withName("c").build();
+		x = builder.withName("x").build();
+		y = builder.withName("y").build();
+		z = builder.withName("z").build();
+	}
 
 	@Test
-	public void testSortInterleavedByName() {
-		ProductJson a = new ProductJson();
-		a.setName("a");
-		ProductJson b = new ProductJson();
-		b.setName("b");
-		ProductJson c = new ProductJson();
-		c.setName("c");
-		ProductJson x = new ProductJson();
-		x.setName("x");
-		ProductJson y = new ProductJson();
-		y.setName("y");
-		ProductJson z = new ProductJson();
-		z.setName("z");
-		
-		List<ProductJson> sorted = RestProductService.sortInterleavedByName(Arrays.asList(a,b,c,x,y,z));
+	public void givenProductList_SortInterleavedAlphabetic() {
+		List<ProductJson> sorted = RestProductService.sortInterleavedByName(Arrays.asList(a, b, c, x, y, z));
 		Assert.assertTrue(sorted.get(0).getName().equals(a.getName()));
 		Assert.assertTrue(sorted.get(1).getName().equals(x.getName()));
 		Assert.assertTrue(sorted.get(2).getName().equals(b.getName()));

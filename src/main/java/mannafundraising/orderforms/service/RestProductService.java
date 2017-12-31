@@ -15,8 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import mannafundraising.common.json.ProductJson;
 import mannafundraising.orderforms.OrderFormsApplicationConfig;
-import mannafundraising.orderforms.domain.ProductJson;
 
 @Component
 @Profile({ OrderFormsApplicationConfig.PROFILE_DEV, OrderFormsApplicationConfig.PROFILE_STAGING, OrderFormsApplicationConfig.PROFILE_PRODUCTION })
